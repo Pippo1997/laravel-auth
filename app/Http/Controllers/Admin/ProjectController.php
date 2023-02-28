@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;  
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
@@ -38,7 +39,17 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $form_data = $request->validate();
+
+        $slug = Project::generateSlug($request->title);
+
+        $form_data['slug'] = $slug;
+
+        $newProject = new Project();
+        $newProject->fill($form_data);
+        $newProject->save();
+
+        return redirect()->route('admin.project.index')->with('message'. 'Project creato correttamente');
     }
 
     /**
