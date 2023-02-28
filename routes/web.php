@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
+use App\Http\Controllers\ProjectController as ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,9 @@ Route::get('/', function () {
 
 // Modifico la rotta
 
-Route::middleware('auth', 'verified')->name('admin.')->prefix('adimn')->namespace('Admin')->group(function(){
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->name('admin.')->prefix('adimn')->group(function(){
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('project', ProjectController::class)->parameters(['project' => 'project:slug']);
 });
 
 Route::middleware('auth')->group(function () {
