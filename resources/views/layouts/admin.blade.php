@@ -60,10 +60,7 @@
                                     <i class="fa-solid fa-newspaper fa-lg fa-fw"></i> Posts
                                 </a>
                             </li>
-
                         </ul>
-
-
                     </div>
                 </nav>
 
