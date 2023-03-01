@@ -32,10 +32,10 @@
                         <td>{{$project->title}}</td>
                         <td>{{$project->slug}}</td>
                         <td>
-                            <a href="{{ route('admin.projects.show', $projects->slug)}}" title="Visualizza projects" class="btn btn-sm btn-square btn-primary">
+                            <a href="{{ route('admin.projects.show', $project->slug)}}" title="Visualizza projects" class="btn btn-sm btn-square btn-primary">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <a href="{{ route('admin.projects.edit', $projects->slug)}}" title="Modifica projects" class="btn btn-sm btn-square btn-warning">
+                            <a href="{{ route('admin.projects.edit', $project->slug)}}" title="Modifica projects" class="btn btn-sm btn-square btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <form action="{{ route('admin.projects.destroy', $project->slug) }}" class="d-inline-block" method="POST">

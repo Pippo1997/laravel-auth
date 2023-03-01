@@ -39,9 +39,9 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $form_data = $request->validate();
+        $form_data = $request->validated();
 
-        $slug = Project::generateSlug($request->title);
+        $slug = Project::generateSlug($request->title, '-');
 
         $form_data['slug'] = $slug;
 
@@ -90,7 +90,7 @@ class ProjectController extends Controller
 
         $project->update($form_data);
 
-        return redirect()->route('admin.projects.index')->with('message', $project->title.'è stato correttamente aggiornato');
+        return redirect()->route('admin.projects.index')->with('message', $project->title.'Il Projectè stato correttamente aggiornato');
     }
 
     /**
@@ -103,6 +103,6 @@ class ProjectController extends Controller
     {
         $project->delete();
 
-        return redirect()->route('admin.projects.index')->with('message', 'Project cancellato correttamente');
+        return redirect()->route('admin.projects.index')->with('message', $project->title.'Il Project cancellato correttamente');
     }
 }
