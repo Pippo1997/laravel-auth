@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 my-5">
-            <h2>Aggiungi nuovo Project</h2>
+            <h2>Modifica nuovo Project</h2>
         </div>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -21,13 +21,13 @@
                 <label class="control-label">
                     Titolo
                 </label>
-                <input type="text" class="form-control" placeholder="Titolo" id="title" name ="title">
+                <input type="text" class="form-control" placeholder="Titolo" id="title" name ="title" value="{{ old('title') ?? $project->title }}">
             </div>
             <div class="form-group my-3">
                 <label class="control-label">
                     Contenuto
                 </label>
-                <textarea type="text-area" class="form-control" placeholder="Contenuto" id="content" name ="content"></textarea>
+                <textarea type="text-area" class="form-control" placeholder="Contenuto" id="content" name ="content" value="{{ old('content') ?? $project->content }}"></textarea>
             </div>
             <div class="form-group my-3">
                 <button type="submit" class="btn btn-sm btn-success">Salva Project</button>

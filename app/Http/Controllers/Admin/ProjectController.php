@@ -49,7 +49,7 @@ class ProjectController extends Controller
         $newProject->fill($form_data);
         $newProject->save();
 
-        return redirect()->route('admin.project.index')->with('message'. 'Project creato correttamente');
+        return redirect()->route('admin.projects.index')->with('message'. 'Project creato correttamente');
     }
 
     /**
@@ -60,7 +60,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -71,7 +71,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -83,7 +83,14 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $form_data = $request->validated();
+
+        $slug = Project::generateSlug($request->title, '-');
+        $form_data['slug'] = $slug;
+
+        $project->update($form_data);
+
+        return redirect()->route('admin.projects.index')->with('message', $project->title.'è stato correttamente aggiornato');
     }
 
     /**
@@ -94,6 +101,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('admin.projects.index')->with('message', 'Project cancellato correttamente');
     }
 }

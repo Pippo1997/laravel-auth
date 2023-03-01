@@ -28,4 +28,13 @@ class StoreProjectRequest extends FormRequest
             'content' => ['nullable']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Il titolo è richiesto',
+            'title.unique' => 'E\ già presente questo titolo',
+            'title.max' => 'Il titolo può essere lungo al massimo 150 cratteri',
+        ];
+    }
 }
